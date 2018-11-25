@@ -104,35 +104,57 @@ end
 #   #array to test it!)
 #
 
-def test_add_friend
-     add_friend(@person2)
+  def test_add_friend
+     add_friend(@person2, "Scrappy-Doo")
      result = @person2[:friends].length
      assert_equal(2, result)
-end
-
-
-
-
+  end
 
 #
 #   # 5. For a given person, remove a specific name from their list of friends
 #   # (hint: Same as above, testing for the length of the array should be sufficient)
 #
-#
-#   # 6. Find the total of everyone's money
-#   # (hint: use the @people array, remember how we checked the total number of eggs yesterday?)
-#
-#
-#   # 7. For two given people, allow the first person to loan a given value of money to the other
-#   # (hint: our function will probably need 3 arguments passed to it... the lender, the lendee, and the amount for this function)
-#   # (hint2: You should test if both the lender's and the lendee's money have changed, maybe two assertions?)
-#
-#
+def test_remove_friend
+     remove_friend(@person4, "Velma")
+     result = @person4[:friends].length
+     assert_equal(2, result)
+end
+
+#6. Find the total of everyone's money
+#(hint: use the @people array, remember how we checked the total number of eggs yesterday?)
+
+def test_total_of_money
+    result = total_friends_monies(@people)
+    assert_equal(143, result)
+end
+#   7. For two given people, allow the first person to loan a given value of money to the other
+#   (hint: our function will probably need 3 arguments passed to it... the lender, the lendee, and the amount for this function)
+#   (hint2: You should test if both the lender's and the lendee's money have changed, maybe two assertions?)
+
+def test_loan_monies
+  loan_monies(@person4, @person5, 10)
+  result = @person4[:monies]
+  assert_equal(10, result)
+  result = @person5[:monies]
+  assert_equal(110, result)
+end
+
+
 #   # 8. Find the set of everyone's favourite food joined together
 #   # (hint: concatenate the favourites/snack arrays together)
-#
+
+def test_fav_snacks
+  result = fav_snacks(@people)
+  expected = ["charcuterie", "soup", "bread", "Scooby snacks", "spaghetti", "ratatouille", "spinach"]
+  assert_equal(expected, result)
+end
 #
 #   # 9. Find people with no friends
 #   # (hint: return an array, there might be more people in the future with no friends!)
-#
+
+def test_no_friends
+  result = no_friends(@people)
+  assert_equal([@person5], result)
+end
+
 end
